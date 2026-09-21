@@ -81,6 +81,7 @@ fun CompressingScreen(
     }
     
     val formattedSize = state.formattedCurrentOutputSize
+    val batchProgress = state.batchProgress
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -174,6 +175,25 @@ fun CompressingScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.Bold
                     )
+                    if (batchProgress != null) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            stringResource(
+                                R.string.compressing_batch_progress,
+                                batchProgress.currentIndex,
+                                batchProgress.total
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Text(
+                            batchProgress.currentName,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 1
+                        )
+                    }
                     Spacer(modifier = Modifier.height(16.dp))
                     val animatedProgress by animateFloatAsState(
                         targetValue = state.progress,

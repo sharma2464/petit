@@ -22,12 +22,19 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -53,11 +60,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import compress.joshattic.us.R
+import compress.joshattic.us.ui.screens.BatchResultScreen
 import compress.joshattic.us.ui.screens.CompressionFailedScreen
 import compress.joshattic.us.ui.screens.CompressingScreen
 import compress.joshattic.us.ui.screens.ConfigScreen
 import compress.joshattic.us.ui.screens.EmptyScreen
 import compress.joshattic.us.ui.screens.ResultScreen
+import compress.joshattic.us.ui.screens.VideoQueueScreen
 import compress.joshattic.us.ui.screens.settings.AboutScreen
 import compress.joshattic.us.ui.screens.settings.DisplaySettingsScreen
 import compress.joshattic.us.ui.screens.settings.LicensesScreen
@@ -99,7 +108,9 @@ fun CompressorApp(viewModel: CompressorViewModel) {
     }
 
     val isSettingsOpen = currentSettingsDestination != null
-    val canHandleBack = isSettingsOpen || state.selectedUri != null
+    val inMainFlow = state.videoQueue.isNotEmpty() || state.selectedUri != null || state.batchResults.isNotEmpty()
+    val canHandleBack = isSettingsOpen || inMainFlow
+    var showVideoSourcePicker by remember { mutableStateOf(false) }
 
     // Predictive back gesture progress (0f..1f) for in-app navigation previews.
     var backGestureProgress by remember { mutableFloatStateOf(0f) }
@@ -122,6 +133,12 @@ fun CompressorApp(viewModel: CompressorViewModel) {
             }
         } else if (state.isCompressing) {
             viewModel.cancelCompression()
+        } else if (state.batchResults.isNotEmpty()) {
+            viewModel.reset()
+        } else if (state.queueConfirmed && state.selectedUri != null) {
+            viewModel.backFromConfigToQueue()
+        } else if (state.videoQueue.isNotEmpty()) {
+            viewModel.clearQueue()
         } else {
             viewModel.reset()
         }
@@ -146,10 +163,30 @@ fun CompressorApp(viewModel: CompressorViewModel) {
         }
     }
     
-    val pickMedia = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) {
-            viewModel.updateSelectedUri(context, uri)
+    val pickMultipleMedia = rememberLauncherForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()) { uris ->
+        if (uris.isNotEmpty()) {
+            viewModel.addVideosToQueue(context, uris)
         }
+    }
+
+    val openMultipleDocuments = rememberLauncherForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+        if (uris.isNotEmpty()) {
+            viewModel.addVideosToQueue(context, uris)
+        }
+    }
+
+    fun launchVideoSourcePicker() {
+        showVideoSourcePicker = true
+    }
+
+    fun pickFromGallery() {
+        showVideoSourcePicker = false
+        pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly))
+    }
+
+    fun pickFromFiles() {
+        showVideoSourcePicker = false
+        openMultipleDocuments.launch(arrayOf("video/*"))
     }
 
     val createDocumentLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("video/mp4")) { uri ->
@@ -255,6 +292,7 @@ fun CompressorApp(viewModel: CompressorViewModel) {
                             SettingsDestination.DISPLAY -> DisplaySettingsScreen(
                                 state = state,
                                 onBack = { currentSettingsDestination = SettingsDestination.MAIN },
+                                onTogglePreserveMetadata = { viewModel.togglePreserveMetadata() },
                                 onToggleAutoSaveToPhotos = { viewModel.toggleAutoSaveToPhotos() },
                                 onChangeOutputLocation = {
                                     val initial = state.customOutputTreeUri?.let { Uri.parse(it) }
@@ -332,8 +370,11 @@ fun CompressorApp(viewModel: CompressorViewModel) {
                         Box(modifier = Modifier.padding(innerPadding)) {
                             AnimatedContent(
                                 targetState = when {
-                                    state.selectedUri == null -> 0
+                                    state.batchResults.isNotEmpty() && !state.isCompressing -> 4
+                                    state.videoQueue.isEmpty() -> 0
+                                    !state.queueConfirmed -> 3
                                     state.compressedUri != null || state.error != null -> 2
+                                    state.selectedUri == null -> 0
                                     else -> 1
                                 },
                                 transitionSpec = {
@@ -349,7 +390,24 @@ fun CompressorApp(viewModel: CompressorViewModel) {
                                     0 -> EmptyScreen(
                                         totalSaved = state.formattedTotalSaved,
                                         showStorageSaved = state.showStorageSaved,
-                                        onPick = { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)) }
+                                        onPick = { launchVideoSourcePicker() }
+                                    )
+                                    3 -> VideoQueueScreen(
+                                        state = state,
+                                        onAddVideos = { launchVideoSourcePicker() },
+                                        onRemoveVideo = { viewModel.removeFromQueue(it) },
+                                        onContinue = { viewModel.confirmQueueForCompression(context) },
+                                        onChangeOutputLocation = {
+                                            val initial = state.customOutputTreeUri?.let { Uri.parse(it) }
+                                            openDocumentTreeLauncher.launch(initial)
+                                        },
+                                        onResetOutputLocation = { viewModel.clearCustomOutputFolder(context) }
+                                    )
+                                    4 -> BatchResultScreen(
+                                        state = state,
+                                        onSaveResult = { viewModel.saveBatchResult(context, it) },
+                                        onSaveAll = { viewModel.saveAllBatchResults(context) },
+                                        onCompressMore = { viewModel.reset() }
                                     )
                                     2 -> {
                                         if (state.error != null) {
@@ -396,6 +454,39 @@ fun CompressorApp(viewModel: CompressorViewModel) {
                 }
             }
         }
+    }
+
+    if (showVideoSourcePicker) {
+        AlertDialog(
+            onDismissRequest = { showVideoSourcePicker = false },
+            title = { Text(stringResource(R.string.pick_videos_source_title), fontWeight = FontWeight.Bold) },
+            text = {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Button(
+                        onClick = { pickFromGallery() },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(stringResource(R.string.pick_from_gallery), fontWeight = FontWeight.Bold)
+                    }
+                    OutlinedButton(
+                        onClick = { pickFromFiles() },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(stringResource(R.string.pick_from_files), fontWeight = FontWeight.Bold)
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showVideoSourcePicker = false }) {
+                    Text(stringResource(R.string.close), fontWeight = FontWeight.Bold)
+                }
+            }
+        )
     }
 
     if (state.showWhatsNewDialog) {

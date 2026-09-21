@@ -206,6 +206,18 @@ class CompressorUiStateTest {
     }
 
     @Test
+    fun preserveMetadataDefaultsToTrue() {
+        assertTrue(CompressorUiState().preserveMetadata)
+    }
+
+    @Test
+    fun testStatePreservation_preserveMetadata() {
+        val state = CompressorUiState(preserveMetadata = false)
+        val resetState = CompressorUiState(preserveMetadata = state.preserveMetadata)
+        assertFalse(resetState.preserveMetadata)
+    }
+
+    @Test
     fun testStatePreservation_autoSaveToPhotos() {
         val state = CompressorUiState(
             autoSaveToPhotos = true,

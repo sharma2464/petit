@@ -62,8 +62,19 @@
     <string name="close">Close</string>
 
     <string name="error_prefix">Error: %1$s</string>
-    <string name="select_video">Select a video to compress</string>
+    <string name="select_video">Select videos to compress</string>
     <string name="add_video_desc">Add Video</string>
+    <string name="pick_videos_source_title">Add videos</string>
+    <string name="pick_from_gallery">Gallery</string>
+    <string name="pick_from_files">Files</string>
+    <string name="video_queue_continue">Continue</string>
+    <string name="video_queue_empty_hint">Add at least one video to continue</string>
+    <string name="remove_video_desc">Remove video</string>
+    <string name="compressing_batch_progress">Compressing %1$d of %2$d</string>
+    <string name="batch_compression_complete">All done</string>
+    <string name="batch_save_all">Save all</string>
+    <string name="batch_failed">Failed</string>
+    <string name="batch_summary_sizes">%1$s → %2$s</string>
     <string name="total_saved">You\'ve saved %1$s of storage with Compressor</string>
 
     <string name="slider_less_space">Less Space</string>
@@ -167,6 +178,8 @@
     
     <string name="header_general_options">General options</string>
     <string name="header_display_options">Display options</string>
+    <string name="preserve_metadata_title">Preserve metadata</string>
+    <string name="preserve_metadata_subtitle">Keep capture date, location, camera, author, and other tags from the original file</string>
     <string name="auto_save_photos_title">Automatically save</string>
     <string name="auto_save_photos_subtitle">Automatically save compressed videos after compression</string>
     <string name="output_location_title">Save location</string>

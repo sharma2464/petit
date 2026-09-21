@@ -3,6 +3,7 @@ package compress.joshattic.us.model
 import android.net.Uri
 import androidx.media3.common.MimeTypes
 import compress.joshattic.us.BuildConfig
+import compress.joshattic.us.utils.SourceMediaMetadata
 import compress.joshattic.us.utils.formatFileSize
 import java.util.Locale
 
@@ -25,6 +26,10 @@ val defaultTargetSizePresets = listOf(
 )
 
 data class CompressorUiState(
+    val videoQueue: List<QueuedVideo> = emptyList(),
+    val queueConfirmed: Boolean = false,
+    val batchProgress: BatchProgress? = null,
+    val batchResults: List<BatchCompressionResult> = emptyList(),
     val selectedUri: Uri? = null,
     val originalSize: Long = 0L,
     val originalWidth: Int = 0,
@@ -67,6 +72,8 @@ data class CompressorUiState(
     val showStorageSaved: Boolean = true,
     val showTargetSizePreset: Boolean = true,
     /** Only meaningful on Android 10+; forced off on older versions. */
+    val preserveMetadata: Boolean = true,
+    val lastSourceMediaMetadata: SourceMediaMetadata? = null,
     val autoSaveToPhotos: Boolean = false,
     val customOutputTreeUri: String? = null,
     val customOutputFolderName: String? = null,

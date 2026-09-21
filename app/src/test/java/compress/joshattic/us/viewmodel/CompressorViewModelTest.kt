@@ -72,6 +72,30 @@ class CompressorViewModelTest {
     }
 
     @Test
+    fun togglePreserveMetadataFlipsState() {
+        val initial = viewModel.uiState.value.preserveMetadata
+        viewModel.togglePreserveMetadata()
+        assertEquals(!initial, viewModel.uiState.value.preserveMetadata)
+        viewModel.togglePreserveMetadata()
+        assertEquals(initial, viewModel.uiState.value.preserveMetadata)
+    }
+
+    @Test
+    fun clearQueueResetsQueueState() {
+        viewModel.clearQueue()
+        val state = viewModel.uiState.value
+        assertTrue(state.videoQueue.isEmpty())
+        assertFalse(state.queueConfirmed)
+        assertNull(state.selectedUri)
+    }
+
+    @Test
+    fun backFromConfigToQueueClearsConfirmedFlag() {
+        viewModel.backFromConfigToQueue()
+        assertFalse(viewModel.uiState.value.queueConfirmed)
+    }
+
+    @Test
     fun testApplyPreset_High() {
         viewModel.applyPreset(QualityPreset.HIGH)
         val state = viewModel.uiState.value

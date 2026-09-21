@@ -69,6 +69,7 @@ import androidx.compose.ui.unit.dp
 import compress.joshattic.us.R
 import compress.joshattic.us.model.CompressorUiState
 import compress.joshattic.us.model.FilenameSegment
+import compress.joshattic.us.ui.components.OutputLocationSection
 
 private data class TokenChipItem(val key: String, val labelRes: Int)
 
@@ -92,6 +93,7 @@ private val availableTokenChips = listOf(
 fun DisplaySettingsScreen(
     state: CompressorUiState,
     onBack: () -> Unit,
+    onTogglePreserveMetadata: () -> Unit,
     onToggleAutoSaveToPhotos: () -> Unit,
     onChangeOutputLocation: () -> Unit,
     onResetOutputLocation: () -> Unit,
@@ -180,6 +182,46 @@ fun DisplaySettingsScreen(
                     color = MaterialTheme.colorScheme.surfaceContainer
                 ) {
                     Column {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    haptics.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                                    onTogglePreserveMetadata()
+                                }
+                                .padding(horizontal = 20.dp, vertical = 18.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = stringResource(R.string.preserve_metadata_title),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = stringResource(R.string.preserve_metadata_subtitle),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Switch(
+                                checked = state.preserveMetadata,
+                                onCheckedChange = {
+                                    haptics.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                                    onTogglePreserveMetadata()
+                                }
+                            )
+                        }
+
+                        HorizontalDivider(
+                            modifier = Modifier.padding(horizontal = 20.dp),
+                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)
+                        )
+
                         val autoSaveSupported = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                         if (autoSaveSupported) {
                             Row(
@@ -223,83 +265,11 @@ fun DisplaySettingsScreen(
                             )
                         }
 
-                        // Save location
-                        val hasCustomLocation = !state.customOutputTreeUri.isNullOrBlank()
-                        val locationLabel = if (hasCustomLocation) {
-                            state.customOutputFolderName
-                                ?.takeIf { it.isNotBlank() }
-                                ?: stringResource(R.string.output_location_default)
-                        } else {
-                            stringResource(R.string.output_location_default)
-                        }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable {
-                                    haptics.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                                    onChangeOutputLocation()
-                                }
-                                .padding(horizontal = 20.dp, vertical = 18.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(
-                                    text = stringResource(R.string.output_location_title),
-                                    style = MaterialTheme.typography.titleMedium,
-                                    fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Text(
-                                    text = locationLabel,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Text(
-                                    text = stringResource(R.string.output_location_subtitle),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
-                                )
-                            }
-                        }
-
-                        AnimatedVisibility(visible = hasCustomLocation) {
-                            Column {
-                                HorizontalDivider(
-                                    modifier = Modifier.padding(horizontal = 20.dp),
-                                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)
-                                )
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-                                            haptics.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                                            onResetOutputLocation()
-                                        }
-                                        .padding(horizontal = 20.dp, vertical = 18.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Column(modifier = Modifier.weight(1f)) {
-                                        Text(
-                                            text = stringResource(R.string.output_location_reset_title),
-                                            style = MaterialTheme.typography.titleMedium,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.onSurface
-                                        )
-                                        Spacer(modifier = Modifier.height(2.dp))
-                                        Text(
-                                            text = stringResource(R.string.output_location_reset_subtitle),
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            fontWeight = FontWeight.SemiBold,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                }
-                            }
-                        }
+                        OutputLocationSection(
+                            state = state,
+                            onChangeOutputLocation = onChangeOutputLocation,
+                            onResetOutputLocation = onResetOutputLocation
+                        )
 
                         HorizontalDivider(
                             modifier = Modifier.padding(horizontal = 20.dp),

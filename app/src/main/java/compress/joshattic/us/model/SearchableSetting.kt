@@ -45,6 +45,8 @@ fun rememberSearchableSettings(
     val categoryAudioSubtitle = stringResource(R.string.category_audio_subtitle)
     val versionFormat = stringResource(R.string.version_format, state.appInfoVersion)
 
+    val preserveMetadataTitle = stringResource(R.string.preserve_metadata_title)
+    val preserveMetadataSubtitle = stringResource(R.string.preserve_metadata_subtitle)
     val autoSavePhotosTitle = stringResource(R.string.auto_save_photos_title)
     val autoSavePhotosSubtitle = stringResource(R.string.auto_save_photos_subtitle)
     val outputLocationTitle = stringResource(R.string.output_location_title)
@@ -141,6 +143,7 @@ fun rememberSearchableSettings(
         settings.add(SearchableSetting(aboutTitle, versionFormat, aboutTitle, "about", Icons.Default.Info, onNavigateToAbout))
 
         // 2. Display / General
+        settings.add(SearchableSetting(preserveMetadataTitle, preserveMetadataSubtitle, displayTitle, "display", Icons.Default.Tune, onNavigateToDisplay))
         settings.add(SearchableSetting(autoSavePhotosTitle, autoSavePhotosSubtitle, displayTitle, "display", Icons.Default.Tune, onNavigateToDisplay))
         settings.add(SearchableSetting(outputLocationTitle, outputLocationSubtitle, displayTitle, "display", Icons.Default.Tune, onNavigateToDisplay))
         settings.add(SearchableSetting(outputLocationResetTitle, outputLocationResetSubtitle, displayTitle, "display", Icons.Default.Tune, onNavigateToDisplay))
