@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Compressor</string>
-    <string name="title_compressor">Compressor</string>
+    <string name="app_name">Petit</string>
+    <string name="title_compressor">Petit</string>
     <string name="share">Teilen</string>
     <string name="saved">Gespeichert</string>
     <string name="saving">Speichere…</string>
     <string name="save_to_photos">In Fotos speichern</string>
     <string name="compress_another_video">Weiteres Video komprimieren</string>
-    <string name="buy_coffee">☕ Gefällt dir Compressor? Spendier mir einen Kaffee!</string>
+    <string name="buy_coffee">☕ Gefällt dir Petit? Spendier mir einen Kaffee!</string>
     <string name="share_video_title">Komprimiertes Video teilen</string>
     <string name="share_error">Teilen nicht möglich: %1$s</string>
     <string name="original">Original</string>
@@ -37,7 +37,7 @@
     <string name="error_prefix">Fehler: %1$s</string>
     <string name="select_video">Video auswählen</string>
     <string name="add_video_desc">Video hinzufügen</string>
-    <string name="total_saved">Du hast %1$s Speicherplatz mit Compressor gespart</string>
+    <string name="total_saved">Du hast %1$s Speicherplatz mit Petit gespart</string>
     <string name="compression_complete">Komprimierung abgeschlossen!</string>
     <string name="compressing_video_label">KOMPRIMIERE VIDEO</string>
     <string name="cancel">Stornieren</string>
@@ -125,7 +125,7 @@
     <string name="search_icon_desc">Suchen</string>
     <string name="clear_search_desc">Suche löschen</string>
     <string name="no_settings_found">Keine Einstellungen gefunden</string>
-    <string name="about_compressor_title">Über Compressor</string>
+    <string name="about_compressor_title">Über Petit</string>
     <string name="basic_info_header">Basis-Info</string>
     <string name="display_settings_title">Allgemein</string>
     <string name="general_settings_title">Allgemein</string>
@@ -169,10 +169,10 @@
     <string name="show_target_size_preset_subtitle">Registerkarte für Qualitätsvoreinstellungen während der Videoeinrichtung anzeigen</string>
     
     <string name="output_location_title">Speicherort</string>
-    <string name="output_location_default">Fotos (Filme/Compressor)</string>
+    <string name="output_location_default">Fotos (Filme/Petit)</string>
     <string name="output_location_subtitle">Wo komprimierte Videos standardmäßig gespeichert werden</string>
     <string name="output_location_reset_title">Standard verwenden (Fotos)</string>
-    <string name="output_location_reset_subtitle">Speicherort auf Filme/Compressor zurücksetzen</string>
+    <string name="output_location_reset_subtitle">Speicherort auf Filme/Petit zurücksetzen</string>
     <string name="save_to_folder">Speichern</string>
 
     <string name="filename_builder_title">Dateinameneditor</string>
@@ -259,11 +259,11 @@
     <string name="reset_audio_defaults">Audio-Standards zurücksetzen</string>
 
     <!-- What's New Dialog -->
-    <string name="whats_new_title">Was gibt\'s Neues in Compressor</string>
+    <string name="whats_new_title">Was gibt\'s Neues in Petit</string>
     <string name="whats_new_version">Version %1$s</string>
     <string name="whats_new_button">Verstanden</string>
     <string name="whats_new_1_title">Leistungsverbesserungen</string>
-    <string name="whats_new_1_desc">Compressor ist nun schneller denn je, insbesondere auf Android 13+ dank Leistungsverbesserungen hinter den Kulissen</string>
+    <string name="whats_new_1_desc">Petit ist nun schneller denn je, insbesondere auf Android 13+ dank Leistungsverbesserungen hinter den Kulissen</string>
     <string name="whats_new_2_title">Fehler- und Regressionsbehebungen</string>
     <string name="whats_new_2_desc">Verschiedene Fehler und Regressionen aus älteren Versionen wurden behoben</string>
 </resources>

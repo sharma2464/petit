@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Compressor</string>
-    <string name="title_compressor">Compressor</string>
+    <string name="app_name">Petit</string>
+    <string name="title_compressor">Petit</string>
     <string name="share">共有</string>
     <string name="saved">保存済み</string>
     <string name="saving">保存中…</string>
     <string name="save_to_photos">写真に保存</string>
     <string name="compress_another_video">別の動画を圧縮</string>
-    <string name="buy_coffee">☕ Compressorを気に入っていただけましたか？コーヒーを一杯奢る</string>
+    <string name="buy_coffee">☕ Petitを気に入っていただけましたか？コーヒーを一杯奢る</string>
     <string name="share_video_title">圧縮した動画を共有</string>
     <string name="share_error">共有できません: %1$s</string>
     <string name="original">元サイズ</string>
@@ -61,7 +61,7 @@
     <string name="error_prefix">エラー: %1$s</string>
     <string name="select_video">圧縮する動画を選択</string>
     <string name="add_video_desc">動画を追加</string>
-    <string name="total_saved">Compressorで合計 %1$s 節約しました</string>
+    <string name="total_saved">Petitで合計 %1$s 節約しました</string>
 
     <string name="slider_less_space">容量重視</string>
     <string name="slider_balanced">バランス</string>
@@ -130,7 +130,7 @@
     <string name="search_icon_desc">検索</string>
     <string name="clear_search_desc">検索をクリア</string>
     <string name="no_settings_found">設定が見つかりません</string>
-    <string name="about_compressor_title">Compressorについて</string>
+    <string name="about_compressor_title">Petitについて</string>
     <string name="basic_info_header">基本情報</string>
     <string name="display_settings_title">一般</string>
     <string name="general_settings_title">一般</string>
@@ -174,10 +174,10 @@
     <string name="show_target_size_preset_subtitle">動画設定時に画質プリセットタブを表示</string>
     
     <string name="output_location_title">保存先</string>
-    <string name="output_location_default">写真 (Movies/Compressor)</string>
+    <string name="output_location_default">写真 (Movies/Petit)</string>
     <string name="output_location_subtitle">圧縮した動画のデフォルト保存先</string>
     <string name="output_location_reset_title">デフォルトを使用 (写真)</string>
-    <string name="output_location_reset_subtitle">保存場所を Movies/Compressor にリセット</string>
+    <string name="output_location_reset_subtitle">保存場所を Movies/Petit にリセット</string>
     <string name="save_to_folder">保存</string>
 
     <string name="filename_builder_title">ファイル名ビルダー</string>
@@ -260,11 +260,11 @@
     <string name="reset_audio_defaults">音声デフォルトをリセット</string>
 
     <!-- What's New Dialog -->
-    <string name="whats_new_title">Compressor の新機能</string>
+    <string name="whats_new_title">Petit の新機能</string>
     <string name="whats_new_version">バージョン %1$s</string>
     <string name="whats_new_button">了解</string>
     <string name="whats_new_1_title">パフォーマンスの向上</string>
-    <string name="whats_new_1_desc">内部的なパフォーマンス改善により、特に Android 13 以上で Compressor がこれまで以上に高速になりました</string>
+    <string name="whats_new_1_desc">内部的なパフォーマンス改善により、特に Android 13 以上で Petit がこれまで以上に高速になりました</string>
     <string name="whats_new_2_title">バグとリグレッションの修正</string>
     <string name="whats_new_2_desc">以前のバージョンから存在したさまざまなバグやリグレッションを修正しました</string>
 </resources>

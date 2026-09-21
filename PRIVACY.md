@@ -19,4 +19,4 @@ The App contains **no** third-party tracking, analytics, or advertising SDKs (su
 All video compression is performed locally on your device using the Android hardware acceleration capabilities. Your videos never leave your device.
 
 ## 5. Contact
-If you have questions about this policy, please open an issue on the [GitHub Repository](https://github.com/JoshAtticus/Compressor) or send an email to compressor@joshattic.us.
+If you have questions about this policy, please open an issue on the [GitHub Repository](https://github.com/sharma2464/petit).

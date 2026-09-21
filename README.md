@@ -1,7 +1,9 @@
 <div align="center">
   <img width="96" alt="ic_launcher-playstore" src="assets/logo.png?v=2" />
 
-# Compressor
+# Petit
+
+**Petit** (`app.petit.files`) is a fork of [Compressor](https://github.com/JoshAtticus/Compressor): a fast, ad-free, lightweight native video compressor for Android. Download builds from [GitHub Releases](https://github.com/sharma2464/petit/releases).
 
 Lightning fast, ad free, super lightweight native video compressor for Android (inspired by the AMAZING Kompresso app for iOS).
 

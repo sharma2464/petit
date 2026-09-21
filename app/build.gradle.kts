@@ -9,13 +9,13 @@ plugins {
 // compiler plugin is still required until AGP bundles it.
 
 android {
-    namespace = "compress.joshattic.us"
+    namespace = "app.petit.files"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "compress.joshattic.us"
+        applicationId = "app.petit.files"
         minSdk = 24
         targetSdk = 37
         versionCode = 27

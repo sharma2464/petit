@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Compressor</string>
-    <string name="title_compressor">Compressor</string>
+    <string name="app_name">Petit</string>
+    <string name="title_compressor">Petit</string>
     <string name="share">Поделиться</string>
     <string name="saved">Сохранено</string>
     <string name="saving">Сохранение…</string>
     <string name="save_action">Сохранить</string>
     <string name="save_to_photos">Сохранить в Фото</string>
     <string name="compress_another_video">Сжать другое видео</string>
-    <string name="buy_coffee">☕ Нравится Compressor? Купите мне кофе!</string>
+    <string name="buy_coffee">☕ Нравится Petit? Купите мне кофе!</string>
     <string name="share_video_title">Поделиться сжатым видео</string>
     <string name="share_error">Не удалось поделиться: %1$s</string>
     <string name="original">Оригинал</string>
@@ -56,7 +56,7 @@
     <string name="error_prefix">Ошибка: %1$s</string>
     <string name="select_video">Выберите видео для сжатия</string>
     <string name="add_video_desc">Добавить видео</string>
-    <string name="total_saved">Вы сэкономили %1$s памяти с помощью Compressor</string>
+    <string name="total_saved">Вы сэкономили %1$s памяти с помощью Petit</string>
 
     <string name="slider_less_space">Меньше места</string>
     <string name="slider_balanced">Сбалансировано</string>
@@ -132,7 +132,7 @@
     <string name="search_icon_desc">Поиск</string>
     <string name="clear_search_desc">Очистить поиск</string>
     <string name="no_settings_found">Настройки не найдены</string>
-    <string name="about_compressor_title">О приложении Compressor</string>
+    <string name="about_compressor_title">О приложении Petit</string>
     <string name="basic_info_header">Основная информация</string>
     <string name="display_settings_title">Экран</string>
     <string name="general_settings_title">Общие</string>
@@ -176,10 +176,10 @@
     <string name="show_target_size_preset_subtitle">Показывать вкладку пресетов качества при настройке видео</string>
     
     <string name="output_location_title">Место сохранения</string>
-    <string name="output_location_default">Фото (Фильмы/Compressor)</string>
+    <string name="output_location_default">Фото (Фильмы/Petit)</string>
     <string name="output_location_subtitle">Где сжатые видео сохраняются по умолчанию</string>
     <string name="output_location_reset_title">Использовать по умолчанию (Фото)</string>
-    <string name="output_location_reset_subtitle">Сбросить место сохранения на Фильмы/Compressor</string>
+    <string name="output_location_reset_subtitle">Сбросить место сохранения на Фильмы/Petit</string>
     <string name="save_to_folder">Сохранить</string>
 
     <string name="filename_builder_title">Конструктор имени файла</string>
@@ -262,11 +262,11 @@
     <string name="reset_audio_defaults">Сбросить аудио по умолчанию</string>
 
     <!-- What's New Dialog -->
-    <string name="whats_new_title">Что нового в Compressor</string>
+    <string name="whats_new_title">Что нового в Petit</string>
     <string name="whats_new_version">Версия %1$s</string>
     <string name="whats_new_button">Понятно</string>
     <string name="whats_new_1_title">Улучшения производительности</string>
-    <string name="whats_new_1_desc">Compressor теперь быстрее, чем когда-либо, особенно на Android 13+ благодаря скрытым улучшениям производительности</string>
+    <string name="whats_new_1_desc">Petit теперь быстрее, чем когда-либо, особенно на Android 13+ благодаря скрытым улучшениям производительности</string>
     <string name="whats_new_2_title">Исправление ошибок и регрессий</string>
     <string name="whats_new_2_desc">Исправлены различные ошибки и регрессии из предыдущих версий</string>
 </resources>

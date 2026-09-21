@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Compressor</string>
-    <string name="title_compressor">Compressor</string>
+    <string name="app_name">Petit</string>
+    <string name="title_compressor">Petit</string>
     <string name="share">分享</string>
     <string name="saved">已儲存</string>
     <string name="saving">儲存中…</string>
     <string name="save_action">儲存</string>
     <string name="save_to_photos">儲存至相片</string>
     <string name="compress_another_video">壓縮另一個影片</string>
-    <string name="buy_coffee">☕ 喜歡 Compressor？請我喝杯咖啡！</string>
+    <string name="buy_coffee">☕ 喜歡 Petit？請我喝杯咖啡！</string>
     <string name="share_video_title">分享壓縮後的影片</string>
     <string name="share_error">無法分享：%1$s</string>
     <string name="original">原始影片</string>
@@ -63,7 +63,7 @@
     <string name="error_prefix">錯誤：%1$s</string>
     <string name="select_video">選擇要壓縮的影片</string>
     <string name="add_video_desc">新增影片</string>
-    <string name="total_saved">您已透過 Compressor 節省了 %1$s 儲存空間</string>
+    <string name="total_saved">您已透過 Petit 節省了 %1$s 儲存空間</string>
 
     <string name="slider_less_space">更小容量</string>
     <string name="slider_balanced">平衡</string>
@@ -132,7 +132,7 @@
     <string name="search_icon_desc">搜尋</string>
     <string name="clear_search_desc">清除搜尋</string>
     <string name="no_settings_found">未找到相關設定</string>
-    <string name="about_compressor_title">關於 Compressor</string>
+    <string name="about_compressor_title">關於 Petit</string>
     <string name="basic_info_header">基本資訊</string>
     <string name="display_settings_title">顯示</string>
     <string name="general_settings_title">一般</string>
@@ -176,10 +176,10 @@
     <string name="show_target_size_preset_subtitle">在影片設定期間顯示畫質預設分頁</string>
     
     <string name="output_location_title">儲存位置</string>
-    <string name="output_location_default">相簿 (Movies/Compressor)</string>
+    <string name="output_location_default">相簿 (Movies/Petit)</string>
     <string name="output_location_subtitle">壓縮後的影片預設儲存目錄</string>
     <string name="output_location_reset_title">使用預設（相片）</string>
-    <string name="output_location_reset_subtitle">重置儲存位置為 電影/Compressor</string>
+    <string name="output_location_reset_subtitle">重置儲存位置為 電影/Petit</string>
     <string name="save_to_folder">儲存</string>
 
     <string name="filename_builder_title">檔名建立器</string>
@@ -262,11 +262,11 @@
     <string name="reset_audio_defaults">重置音訊預設值</string>
 
     <!-- What's New Dialog -->
-    <string name="whats_new_title">Compressor 新功能</string>
+    <string name="whats_new_title">Petit 新功能</string>
     <string name="whats_new_version">版本 %1$s</string>
     <string name="whats_new_button">知道了</string>
     <string name="whats_new_1_title">效能提升</string>
-    <string name="whats_new_1_desc">得益於幕後的效能改進，Compressor 現在比以往更快速，尤其是在 Android 13 及以上版本上</string>
+    <string name="whats_new_1_desc">得益於幕後的效能改進，Petit 現在比以往更快速，尤其是在 Android 13 及以上版本上</string>
     <string name="whats_new_2_title">錯誤與回歸修復</string>
     <string name="whats_new_2_desc">修復了舊版中的各種錯誤與回歸問題</string>
 </resources>
